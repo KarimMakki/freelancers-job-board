@@ -1,3 +1,3 @@
 from django.contrib import admin
 
-from .users.admins import UserAdmin
+from .users.admin import UserAdmin, ClientAdmin, FreelancerAdmin

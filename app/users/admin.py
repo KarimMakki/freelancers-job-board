@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User, ClientProfile, FreelancerProfile
 from django.contrib.auth.admin import UserAdmin
 
 @admin.register(User)
@@ -13,3 +13,24 @@ class UserAdmin(UserAdmin):
         ('Role', {'fields': ('role',)}),
         ('Profile Picture', {'fields': ('profile_picture',)}),
     )
+    
+@admin.register(ClientProfile)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = [
+        "user",
+        "bio",
+        "company_name",
+        "website",
+        "location"
+    ]
+    
+@admin.register(FreelancerProfile)
+class FreelancerAdmin(admin.ModelAdmin):
+    list_display = [
+        "user",
+        "title",
+        "bio",
+        "hourly_rate",
+        "years_experience",
+        "rating"
+    ]
