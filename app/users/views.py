@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ClientRegisterForm, FreelancerRegisterForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 
 def register_client(request):
@@ -42,4 +42,8 @@ def login_user(request):
     context = {"form": form}
     return render(request, 'app/authentication_pages/login.html', context)
             
-        
+def logout_user(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, "You have been successfully logged out.")
+    return redirect('home')
