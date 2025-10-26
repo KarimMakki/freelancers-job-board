@@ -69,11 +69,13 @@
                         <div class="flex flex-1 justify-end gap-8">
                             <div class="flex items-center gap-9">
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Home</a>
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="#">Find Work</a>
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="#">Post a Project</a>
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
-                                    href="#">Sign In</a>
+                                    href="{% url 'login' %}">Sign In</a>
                             </div>
                             <button
                                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">

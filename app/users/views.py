@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ClientRegisterForm, FreelancerRegisterForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 
 
@@ -15,7 +15,7 @@ def register_client(request):
     else:
             form = ClientRegisterForm()
     context = {'form': form}
-    return render(request, 'app/registration/register_client.html', context)
+    return render(request, 'app/authentication_pages/register_client.html', context)
     
 
 def register_freelancer(request):
@@ -28,4 +28,18 @@ def register_freelancer(request):
     else:
         form = FreelancerRegisterForm()
     context = {'form': form}
-    return render(request, 'app/registration/register_freelancer.html', context)
+    return render(request, 'app/authentication_pages/register_freelancer.html', context)
+
+def login_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            messages.success(request, "Welcome back! You have been successfully logged in.")
+            return redirect('home')
+    else:
+        form = AuthenticationForm()
+    context = {"form": form}
+    return render(request, 'app/authentication_pages/login.html', context)
+            
+        

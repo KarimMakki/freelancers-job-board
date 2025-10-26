@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Register as Freelancer - WorkHive</title>
+    <title>Register as Client - WorkHive</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
         rel="stylesheet" />
@@ -69,13 +69,15 @@
                         <div class="flex flex-1 justify-end gap-8">
                             <div class="flex items-center gap-9">
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Home</a>
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="{% url 'home' %}">Find Work</a>
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="{% url 'home' %}">Post a Project</a>
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
-                                    href="#">Sign In</a>
+                                    href="{% url 'login' %}">Sign In</a>
                             </div>
-                            <a href="{% url 'register_client' %}"
+                            <a href="{% url 'register_freelancer' %}"
                                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
                                 <span class="truncate">Sign Up</span>
                             </a>
@@ -84,7 +86,7 @@
 
                     <div class="px-4 py-5 @container">
                         <div class="@[480px]:p-4">
-                            <div class="flex min-h-[700px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                            <div class="flex min-h-[600px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
                                 data-alt="Abstract gradient background"
                                 style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEgwR8MRQ4dBuuZZyUij7V0YOcyRGIdjcrP4OqJftjZkSwiVCxRT7ySdgdBgLijVK839QeSPl8AwsgsjcMzqadhofPXDCRI4oVPKxcTw0MWh3DC6CHUH4zzUUyMl5frJ5wk_ciXyPzgtC-m2NPq1DfrcWH2KBWNASNTZwfG6LGDGSnCdk5pOvAs0PUScDnlI71BJNKnr3qDXtA6NqUXA2Skz3QWQDze0o6P-vu-K9ogB1mOoER9ery4AXsdQSGFzSWlM88LG0lQFs");'>
 
@@ -93,11 +95,11 @@
                                     <div class="flex flex-col gap-2 text-center mb-6">
                                         <h1
                                             class="text-[#0d171b] dark:text-slate-50 text-2xl font-black leading-tight tracking-[-0.033em]">
-                                            Register as Freelancer
+                                            Register as Client
                                         </h1>
                                         <h2
                                             class="text-[#6c757d] dark:text-slate-400 text-sm font-normal leading-normal">
-                                            Create your profile to start finding work
+                                            Create your account to start posting projects
                                         </h2>
                                     </div>
 
@@ -177,19 +179,52 @@
                                             </div>
                                         </div>
 
-                                        <!-- Title Field -->
+                                        <!-- Location Field -->
                                         <div>
-                                            <label for="{{ form.title.id_for_label }}"
+                                            <label for="{{ form.location.id_for_label }}"
                                                 class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
-                                                Professional Title *
+                                                Location *
                                             </label>
-                                            <input type="text" name="{{ form.title.name }}"
-                                                id="{{ form.title.id_for_label }}"
+                                            <input type="text" name="{{ form.location.name }}"
+                                                id="{{ form.location.id_for_label }}"
                                                 class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
-                                                placeholder="e.g., Web Developer, Graphic Designer, Content Writer"
-                                                value="{{ form.title.value|default:'' }}" required />
-                                            {% if form.title.errors %}
-                                            <div class="text-red-500 text-xs mt-1">{{ form.title.errors.0 }}</div>
+                                                placeholder="Enter your location"
+                                                value="{{ form.location.value|default:'' }}" required />
+                                            {% if form.location.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.location.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- Company Name Field -->
+                                        <div>
+                                            <label for="{{ form.company_name.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Company Name
+                                            </label>
+                                            <input type="text" name="{{ form.company_name.name }}"
+                                                id="{{ form.company_name.id_for_label }}"
+                                                class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
+                                                placeholder="Enter your company name (optional)"
+                                                value="{{ form.company_name.value|default:'' }}" />
+                                            {% if form.company_name.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.company_name.errors.0 }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- Website Field -->
+                                        <div>
+                                            <label for="{{ form.website.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Website
+                                            </label>
+                                            <input type="url" name="{{ form.website.name }}"
+                                                id="{{ form.website.id_for_label }}"
+                                                class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
+                                                placeholder="https://your-website.com (optional)"
+                                                value="{{ form.website.value|default:'' }}" />
+                                            {% if form.website.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.website.errors.0 }}</div>
                                             {% endif %}
                                         </div>
 
@@ -197,70 +232,36 @@
                                         <div>
                                             <label for="{{ form.bio.id_for_label }}"
                                                 class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
-                                                Bio *
+                                                Bio
                                             </label>
                                             <textarea name="{{ form.bio.name }}" id="{{ form.bio.id_for_label }}"
                                                 rows="3"
                                                 class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm resize-none"
-                                                placeholder="Tell us about your skills, experience, and what makes you unique"
-                                                required>{{ form.bio.value|default:'' }}</textarea>
+                                                placeholder="Tell us about yourself and your company (optional)">{{ form.bio.value|default:'' }}</textarea>
                                             {% if form.bio.errors %}
                                             <div class="text-red-500 text-xs mt-1">{{ form.bio.errors.0 }}</div>
                                             {% endif %}
                                         </div>
 
-                                        <!-- Hourly Rate and Years Experience -->
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div>
-                                                <label for="{{ form.hourly_rate.id_for_label }}"
-                                                    class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
-                                                    Hourly Rate ($) *
-                                                </label>
-                                                <input type="number" name="{{ form.hourly_rate.name }}"
-                                                    id="{{ form.hourly_rate.id_for_label }}"
-                                                    class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
-                                                    placeholder="50" min="1"
-                                                    value="{{ form.hourly_rate.value|default:'' }}" required />
-                                                {% if form.hourly_rate.errors %}
-                                                <div class="text-red-500 text-xs mt-1">{{ form.hourly_rate.errors.0 }}
-                                                </div>
-                                                {% endif %}
-                                            </div>
-                                            <div>
-                                                <label for="{{ form.years_experience.id_for_label }}"
-                                                    class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
-                                                    Years of Experience *
-                                                </label>
-                                                <input type="number" name="{{ form.years_experience.name }}"
-                                                    id="{{ form.years_experience.id_for_label }}"
-                                                    class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
-                                                    placeholder="3" min="0"
-                                                    value="{{ form.years_experience.value|default:'' }}" required />
-                                                {% if form.years_experience.errors %}
-                                                <div class="text-red-500 text-xs mt-1">{{ form.years_experience.errors.0
-                                                    }}</div>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-
                                         <!-- Submit Button -->
                                         <button type="submit"
                                             class="w-full flex items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">
-                                            <span class="truncate">Create Freelancer Account</span>
+                                            <span class="truncate">Create Client Account</span>
                                         </button>
                                     </form>
 
                                     <div class="mt-6 text-center">
                                         <p class="text-[#6c757d] dark:text-slate-400 text-sm">
                                             Already have an account?
-                                            <a href="#" class="text-primary hover:text-primary/80 font-medium">Sign
+                                            <a href="{% url 'login' %}"
+                                                class="text-primary hover:text-primary/80 font-medium">Sign
                                                 In</a>
                                         </p>
                                         <p class="text-[#6c757d] dark:text-slate-400 text-sm mt-2">
-                                            Looking to hire?
-                                            <a href="{% url 'register_client' %}"
+                                            Looking for work?
+                                            <a href="{% url 'register_freelancer' %}"
                                                 class="text-primary hover:text-primary/80 font-medium">Register as
-                                                Client</a>
+                                                Freelancer</a>
                                         </p>
                                     </div>
                                 </div>
