@@ -74,13 +74,29 @@
                                     href="#">Find Work</a>
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="#">Post a Project</a>
+                                {% if user.is_authenticated %}
+                                <span class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal">
+                                    Welcome, {{ user.username }}!
+                                </span>
+                                {% else %}
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="{% url 'login' %}">Sign In</a>
+                                {% endif %}
                             </div>
+                            {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'logout' %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit"
+                                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-red-600 text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-red-700">
+                                    <span class="truncate">Logout</span>
+                                </button>
+                            </form>
+                            {% else %}
                             <button
                                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
                                 <span class="truncate">Sign Up</span>
                             </button>
+                            {% endif %}
                         </div>
                     </header>
                     <div class="px-4 py-5 @container">
