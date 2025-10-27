@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Create Project - WorkHive</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d171b] dark:text-slate-50">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="flex flex-1 justify-center">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <header
+                        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7eff3] dark:border-slate-800 px-10 py-3">
+                        <div class="flex items-center gap-4 text-primary">
+                            <div class="size-6">
+                                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_6_319)">
+                                        <path
+                                            d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                            fill="currentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_6_319">
+                                            <rect fill="white" height="48" width="48"></rect>
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2
+                                class="text-[#0d171b] dark:text-slate-50 text-lg font-bold leading-tight tracking-[-0.015em]">
+                                WorkHive</h2>
+                        </div>
+                        <div class="flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-9">
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Home</a>
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Find Work</a>
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Post a Project</a>
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'login' %}">Sign In</a>
+                            </div>
+                            <a href="{% url 'register_client' %}"
+                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                <span class="truncate">Sign Up</span>
+                            </a>
+                        </div>
+                    </header>
+
+                    <div class="px-4 py-5 @container">
+                        <div class="@[480px]:p-4">
+                            <div class="flex min-h-[800px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                                data-alt="Abstract gradient background"
+                                style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEgwR8MRQ4dBuuZZyUij7V0YOcyRGIdjcrP4OqJftjZkSwiVCxRT7ySdgdBgLijVK839QeSPl8AwsgsjcMzqadhofPXDCRI4oVPKxcTw0MWh3DC6CHUH4zzUUyMl5frJ5wk_ciXyPzgtC-m2NPq1DfrcWH2KBWNASNTZwfG6LGDGSnCdk5pOvAs0PUScDnlI71BJNKnr3qDXtA6NqUXA2Skz3QWQDze0o6P-vu-K9ogB1mOoER9ery4AXsdQSGFzSWlM88LG0lQFs");'>
+
+                                <div
+                                    class="w-full max-w-2xl bg-background-light dark:bg-background-dark rounded-xl p-6 shadow-xl">
+                                    <div class="flex flex-col gap-2 text-center mb-6">
+                                        <h1
+                                            class="text-[#0d171b] dark:text-slate-50 text-2xl font-black leading-tight tracking-[-0.033em]">
+                                            Create New Project
+                                        </h1>
+                                        <h2
+                                            class="text-[#6c757d] dark:text-slate-400 text-sm font-normal leading-normal">
+                                            Post your project and find the perfect freelancer
+                                        </h2>
+                                    </div>
+
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div
+                                        class="mb-4 p-3 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+
+                                    <form method="post" class="space-y-6">
+                                        {% csrf_token %}
+
+                                        <!-- Project Title -->
+                                        <div>
+                                            <label for="{{ form.title.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Project Title *
+                                            </label>
+                                            <input type="text" name="{{ form.title.name }}"
+                                                id="{{ form.title.id_for_label }}"
+                                                class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
+                                                placeholder="Enter a clear, descriptive title for your project"
+                                                value="{{ form.title.value|default:'' }}" required />
+                                            {% if form.title.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.title.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- Project Description -->
+                                        <div>
+                                            <label for="{{ form.description.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Project Description *
+                                            </label>
+                                            <textarea name="{{ form.description.name }}"
+                                                id="{{ form.description.id_for_label }}" rows="4"
+                                                class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm resize-none"
+                                                placeholder="Describe your project in detail. Include requirements, deliverables, and any specific needs"
+                                                required>{{ form.description.value|default:'' }}</textarea>
+                                            {% if form.description.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.description.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                    <!-- Category -->
+                                    <div>
+                                        <label for="{{ form.category.id_for_label }}"
+                                            class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                            Category *
+                                        </label>
+                                        <select name="{{ form.category.name }}"
+                                            id="{{ form.category.id_for_label }}"
+                                            class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary text-sm"
+                                            required>
+                                            <option value="">Select a category</option>
+                                            <option value="web_development" {% if form.category.value == 'web_development' %}selected{% endif %}>Web Development</option>
+                                            <option value="app_development" {% if form.category.value == 'app_development' %}selected{% endif %}>App Development</option>
+                                            <option value="data_analysis" {% if form.category.value == 'data_analysis' %}selected{% endif %}>Data Analysis</option>
+                                            <option value="graphic_design" {% if form.category.value == 'graphic_design' %}selected{% endif %}>Graphic Design</option>
+                                            <option value="advertising" {% if form.category.value == 'advertising' %}selected{% endif %}>Advertising</option>
+                                            <option value="writing_and_translation" {% if form.category.value == 'writing_and_translation' %}selected{% endif %}>Writing And Translation</option>
+                                        </select>
+                                        {% if form.category.errors %}
+                                        <div class="text-red-500 text-xs mt-1">{{ form.category.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+
+
+                                        <!-- Budget Range -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="{{ form.budget_min.id_for_label }}"
+                                                    class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                    Minimum Budget ($) *
+                                                </label>
+                                                <input type="number" name="{{ form.budget_min.name }}"
+                                                    id="{{ form.budget_min.id_for_label }}"
+                                                    class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
+                                                    placeholder="100" min="0" step="0.01"
+                                                    value="{{ form.budget_min.value|default:'' }}" required />
+                                                {% if form.budget_min.errors %}
+                                                <div class="text-red-500 text-xs mt-1">{{ form.budget_min.errors.0 }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                <label for="{{ form.budget_max.id_for_label }}"
+                                                    class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                    Maximum Budget ($) *
+                                                </label>
+                                                <input type="number" name="{{ form.budget_max.name }}"
+                                                    id="{{ form.budget_max.id_for_label }}"
+                                                    class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
+                                                    placeholder="500" min="0" step="0.01"
+                                                    value="{{ form.budget_max.value|default:'' }}" required />
+                                                {% if form.budget_max.errors %}
+                                                <div class="text-red-500 text-xs mt-1">{{ form.budget_max.errors.0 }}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                        <!-- Deadline -->
+                                        <div>
+                                            <label for="{{ form.deadline.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Project Deadline
+                                            </label>
+                                            <input type="date" name="{{ form.deadline.name }}"
+                                                id="{{ form.deadline.id_for_label }}"
+                                                class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary text-sm"
+                                                value="{{ form.deadline.value|default:'' }}" />
+                                            {% if form.deadline.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.deadline.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- Skills Required -->
+                                        <div>
+                                            <label for="{{ form.skills_required.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Skills Required
+                                            </label>
+                                            <input type="text" name="{{ form.skills_required.name }}"
+                                                id="{{ form.skills_required.id_for_label }}"
+                                                class="w-full px-3 py-2 border border-[#cfdfe7] dark:border-slate-700 rounded-lg bg-background-light dark:bg-background-dark text-[#0d171b] dark:text-slate-50 focus:outline-0 focus:ring-0 focus:border-primary placeholder:text-[#6c757d] dark:placeholder:text-slate-400 text-sm"
+                                                placeholder="e.g., Python, React, Adobe Photoshop, SEO"
+                                                value="{{ form.skills_required.value|default:'' }}" />
+                                            <p class="text-xs text-[#6c757d] dark:text-slate-400 mt-1">Separate multiple
+                                                skills with commas</p>
+                                            {% if form.skills_required.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.skills_required.errors.0 }}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <button type="submit"
+                                            class="w-full flex items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">
+                                            <span class="truncate">Post Project</span>
+                                        </button>
+                                    </form>
+
+                                    <div class="mt-6 text-center">
+                                        <p class="text-[#6c757d] dark:text-slate-400 text-sm">
+                                            <a href="{% url 'home' %}"
+                                                class="text-primary hover:text-primary/80 font-medium">← Back to
+                                                Home</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="border-t border-solid border-[#e7eff3] dark:border-slate-800 mt-10 px-10 py-6">
+                        <div class="flex justify-between items-center">
+                            <p class="text-[#6c757d] dark:text-slate-400 text-sm">© 2025 WorkHive. All rights
+                                reserved.</p>
+                            <div class="flex gap-6">
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">About Us</a>
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">Contact</a>
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">Terms of Service</a>
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">Privacy Policy</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
