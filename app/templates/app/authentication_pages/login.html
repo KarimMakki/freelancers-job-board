@@ -70,12 +70,22 @@
                             <div class="flex items-center gap-9">
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="{% url 'home' %}">Home</a>
+                                {% if user.is_authenticated and user.role == 'freelancer' %}
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
-                                    href="{% url 'home' %}">Find Work</a>
+                                    href="#">Find Work</a>
+                                {% endif %}
+                                {% if user.is_authenticated and user.role == 'client' %}
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
-                                    href="{% url 'home' %}">Post a Project</a>
+                                    href="{% url 'create_project' %}">Post a Project</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <span class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal">
+                                    Welcome, {{ user.username }}!
+                                </span>
+                                {% else %}
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="{% url 'login' %}">Sign In</a>
+                                {% endif %}
                             </div>
                             <a href="{% url 'register_client' %}"
                                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">

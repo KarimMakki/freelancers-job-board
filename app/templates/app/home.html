@@ -70,10 +70,14 @@
                             <div class="flex items-center gap-9">
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="{% url 'home' %}">Home</a>
+                                {% if user.is_authenticated and user.role == 'freelancer' %}
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
                                     href="#">Find Work</a>
+                                {% endif %}
+                                {% if user.is_authenticated and user.role == 'client' %}
                                 <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
-                                    href="#">Post a Project</a>
+                                    href="{% url 'create_project' %}">Post a Project</a>
+                                {% endif %}
                                 {% if user.is_authenticated %}
                                 <span class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal">
                                     Welcome, {{ user.username }}!
