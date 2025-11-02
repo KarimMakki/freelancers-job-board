@@ -190,9 +190,7 @@
                                                     <span>Budget</span>
                                                 </div>
                                                 <p class="text-[#0d171b] dark:text-slate-50 text-lg font-bold">
-                                                    ${{ project.budget_min }}{% if project.budget_max and
-                                                    project.budget_max != project.budget_min %} - ${{
-                                                    project.budget_max}}{% endif %}
+                                                    ${{ project.budget_min }}{% if project.budget_max and project.budget_max != project.budget_min %} - ${{ project.budget_max}}{% endif %}
                                                 </p>
                                             </div>
 
@@ -256,8 +254,7 @@
                                                     class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-slate-50 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
                                                     <span class="truncate">Apply for this Project</span>
                                                 </button>
-                                                {% elif user.is_authenticated and user.role == 'client' and user ==
-                                                project.client.user %}
+                                                {% elif user.is_authenticated and user.role == 'client' and user == project.client.user %}
                                                 <button
                                                     class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary/20 dark:bg-primary/30 text-primary dark:text-slate-50 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/30 dark:hover:bg-primary/40">
                                                     <span class="truncate">Edit Project</span>
