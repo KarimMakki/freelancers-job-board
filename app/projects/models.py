@@ -43,6 +43,18 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     skills_required = models.CharField(max_length=255, blank=True, null=True)
     
+    @property
+    def skills_list(self):
+        """Return skills_required as a cleaned list of skills.
+
+        Expected format in `skills_required` is a comma-separated string (e.g. "django, react, api").
+        This property returns an empty list when no skills are provided.
+        """
+        if not self.skills_required:
+            return []
+        # Split on comma and strip whitespace, ignore empty entries
+        return [s.strip() for s in self.skills_required.split(',') if s.strip()]
+    
     
     def __str__(self):
         return self.title
