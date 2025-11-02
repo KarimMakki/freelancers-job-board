@@ -174,7 +174,7 @@
                                         </div>
                                         <button
                                             class="flex self-start min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-primary text-slate-50 text-sm font-medium leading-normal hover:bg-primary/90">
-                                            <span class="truncate">View Project</span>
+                                            <a href="{% url 'project_details' project.id %}" class="btn btn-primary">View Project</a>
                                         </button>
                                     </div>
                                 </div>

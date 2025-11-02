@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Project Details - WorkHive</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d171b] dark:text-slate-50">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="flex flex-1 justify-center">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <header
+                        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7eff3] dark:border-slate-800 px-10 py-3">
+                        <div class="flex items-center gap-4 text-primary">
+                            <div class="size-6">
+                                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_6_319)">
+                                        <path
+                                            d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                            fill="currentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_6_319">
+                                            <rect fill="white" height="48" width="48"></rect>
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2
+                                class="text-[#0d171b] dark:text-slate-50 text-lg font-bold leading-tight tracking-[-0.015em]">
+                                <a href="{% url 'home' %}">WorkHive</a>
+                            </h2>
+                        </div>
+                        <div class="flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-9">
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Home</a>
+                                {% if user.is_authenticated and user.role == 'freelancer' %}
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="#">Find Work</a>
+                                {% endif %}
+                                {% if user.is_authenticated and user.role == 'client' %}
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'create_project' %}">Post a Project</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <span class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal">
+                                    Welcome, {{ user.username }}!
+                                </span>
+                                {% else %}
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'login' %}">Sign In</a>
+                                {% endif %}
+                            </div>
+                            {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'logout' %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit"
+                                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-red-600 text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-red-700">
+                                    <span class="truncate">Logout</span>
+                                </button>
+                            </form>
+                            {% else %}
+                            <button
+                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                <span class="truncate">Sign Up</span>
+                            </button>
+                            {% endif %}
+                        </div>
+                    </header>
+
+                    <main class="px-4 py-5 @container">
+                        <div class="mb-4">
+                            <a href="{% url 'home' %}"
+                                class="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium">
+                                <span class="material-symbols-outlined text-base">arrow_back</span>
+                                <span>Back to Projects</span>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-col gap-6 @[640px]:gap-8">
+                            <!-- Project Header -->
+                            <div
+                                class="flex flex-col gap-4 p-6 @[640px]:p-8 rounded-xl bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex items-start justify-between gap-4 flex-wrap">
+                                        <h1
+                                            class="text-[#0d171b] dark:text-slate-50 text-3xl @[640px]:text-4xl font-bold leading-tight tracking-[-0.015em] flex-1">
+                                            {{ project.title }}
+                                        </h1>
+                                        <div
+                                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/20 dark:bg-primary/30">
+                                            <span class="text-primary dark:text-slate-50 text-sm font-medium">
+                                                {{ project.get_category_display }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p class="text-[#6c757d] dark:text-slate-400 text-sm">
+                                        Posted {{ project.created_at|timesince }} ago
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Main Content Grid -->
+                            <div class="grid grid-cols-1 @[960px]:grid-cols-3 gap-6">
+                                <!-- Left Column: Description and Details -->
+                                <div class="flex flex-col gap-6 @[960px]:col-span-2">
+                                    <!-- Description -->
+                                    <div
+                                        class="p-6 @[640px]:p-8 rounded-xl bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+                                        <h2 class="text-[#0d171b] dark:text-slate-50 text-xl font-bold mb-4">Project
+                                            Description</h2>
+                                        <p
+                                            class="text-[#0d171b] dark:text-slate-300 text-base font-normal leading-relaxed whitespace-pre-wrap">
+                                            {{ project.description }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Skills Required -->
+                                    {% if project.skills_list %}
+                                    <div
+                                        class="p-6 @[640px]:p-8 rounded-xl bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800">
+                                        <h2 class="text-[#0d171b] dark:text-slate-50 text-xl font-bold mb-4">Skills
+                                            Required</h2>
+                                        <div class="flex gap-2 flex-wrap">
+                                            {% for skill in project.skills_list %}
+                                            <div
+                                                class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-primary/30 pl-4 pr-4">
+                                                <p
+                                                    class="text-primary dark:text-slate-50 text-sm font-medium leading-normal">
+                                                    {{ skill }}
+                                                </p>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Right Column: Project Info Card -->
+                                <div class="flex flex-col gap-6">
+                                    <div
+                                        class="p-6 @[640px]:p-8 rounded-xl bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800 sticky top-4">
+                                        <h2 class="text-[#0d171b] dark:text-slate-50 text-xl font-bold mb-6">Project
+                                            Details</h2>
+
+                                        <div class="flex flex-col gap-6">
+                                            <!-- Budget -->
+                                            <div class="flex flex-col gap-2">
+                                                <div
+                                                    class="flex items-center gap-2 text-[#6c757d] dark:text-slate-400 text-sm font-medium">
+                                                    <span
+                                                        class="material-symbols-outlined text-base">attach_money</span>
+                                                    <span>Budget</span>
+                                                </div>
+                                                <p class="text-[#0d171b] dark:text-slate-50 text-lg font-bold">
+                                                    ${{ project.budget_min }}{% if project.budget_max and
+                                                    project.budget_max != project.budget_min %} - ${{
+                                                    project.budget_max}}{% endif %}
+                                                </p>
+                                            </div>
+
+                                            <!-- Deadline -->
+                                            {% if project.deadline %}
+                                            <div class="flex flex-col gap-2">
+                                                <div
+                                                    class="flex items-center gap-2 text-[#6c757d] dark:text-slate-400 text-sm font-medium">
+                                                    <span class="material-symbols-outlined text-base">event</span>
+                                                    <span>Deadline</span>
+                                                </div>
+                                                <p class="text-[#0d171b] dark:text-slate-50 text-base font-medium">
+                                                    {{ project.deadline|date:"F d, Y" }}
+                                                </p>
+                                            </div>
+                                            {% endif %}
+
+                                            <!-- Posted Date -->
+                                            <div class="flex flex-col gap-2">
+                                                <div
+                                                    class="flex items-center gap-2 text-[#6c757d] dark:text-slate-400 text-sm font-medium">
+                                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                                    <span>Posted</span>
+                                                </div>
+                                                <p class="text-[#0d171b] dark:text-slate-50 text-base font-medium">
+                                                    {{ project.created_at|date:"F d, Y" }}
+                                                </p>
+                                            </div>
+
+                                            <!-- Divider -->
+                                            <div class="border-t border-slate-200 dark:border-slate-800"></div>
+
+                                            <!-- Client Info -->
+                                            <div class="flex flex-col gap-2">
+                                                <div
+                                                    class="flex items-center gap-2 text-[#6c757d] dark:text-slate-400 text-sm font-medium mb-2">
+                                                    <span class="material-symbols-outlined text-base">person</span>
+                                                    <span>Posted By</span>
+                                                </div>
+                                                <p class="text-[#0d171b] dark:text-slate-50 text-base font-semibold">
+                                                    {{ project.client.user.username }}
+                                                </p>
+                                                {% if project.client.company_name %}
+                                                <p class="text-[#6c757d] dark:text-slate-400 text-sm">
+                                                    {{ project.client.company_name }}
+                                                </p>
+                                                {% endif %}
+                                                {% if project.client.location %}
+                                                <p
+                                                    class="text-[#6c757d] dark:text-slate-400 text-sm flex items-center gap-1">
+                                                    <span class="material-symbols-outlined text-sm">location_on</span>
+                                                    {{ project.client.location }}
+                                                </p>
+                                                {% endif %}
+                                            </div>
+
+                                            <!-- Action Button -->
+                                            <div class="pt-2">
+                                                {% if user.is_authenticated and user.role == 'freelancer' %}
+                                                <button
+                                                    class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-slate-50 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                                    <span class="truncate">Apply for this Project</span>
+                                                </button>
+                                                {% elif user.is_authenticated and user.role == 'client' and user ==
+                                                project.client.user %}
+                                                <button
+                                                    class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary/20 dark:bg-primary/30 text-primary dark:text-slate-50 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/30 dark:hover:bg-primary/40">
+                                                    <span class="truncate">Edit Project</span>
+                                                </button>
+                                                {% elif not user.is_authenticated %}
+                                                <a href="{% url 'login' %}"
+                                                    class="block w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-slate-50 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                                    <span class="truncate">Sign In to Apply</span>
+                                                </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    <footer class="border-t border-solid border-[#e7eff3] dark:border-slate-800 mt-10 px-10 py-6">
+                        <div class="flex justify-between items-center">
+                            <p class="text-[#6c757d] dark:text-slate-400 text-sm">© 2025 WorkHive. All rights
+                                reserved.</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

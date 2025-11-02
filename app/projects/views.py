@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ProjectsCreationForm
 from app.users.models import ClientProfile
 from django.utils import timezone
@@ -32,3 +32,8 @@ def get_recent_projects():
     # Filter projects created within the last 7 days
     recent_projects = Project.objects.filter(created_at__gte=one_week_ago).order_by('-created_at')
     return recent_projects
+
+def get_project_details(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    context = {'project': project}
+    return render(request, 'app/project_details.html', context)
