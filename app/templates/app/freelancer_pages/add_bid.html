@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Place a Bid - WorkHive</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    {% load static %}
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d171b] dark:text-slate-50">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="flex flex-1 justify-center">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <header
+                        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7eff3] dark:border-slate-800 px-10 py-3">
+                        <div class="flex items-center gap-4 text-primary">
+                            <div class="size-6">
+                                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_6_319)">
+                                        <path
+                                            d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                            fill="currentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_6_319">
+                                            <rect fill="white" height="48" width="48"></rect>
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2
+                                class="text-[#0d171b] dark:text-slate-50 text-lg font-bold leading-tight tracking-[-0.015em]">
+                                <a href="{% url 'home' %}">WorkHive</a>
+                            </h2>
+                        </div>
+                        <div class="flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-9">
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'home' %}">Home</a>
+                                {% if user.is_authenticated and user.role == 'freelancer' %}
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="#">Find Work</a>
+                                {% endif %}
+                                {% if user.is_authenticated and user.role == 'client' %}
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'create_project' %}">Post a Project</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <span class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal">
+                                    Welcome, {{ user.username }}!
+                                </span>
+                                {% else %}
+                                <a class="text-[#0d171b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary"
+                                    href="{% url 'login' %}">Sign In</a>
+                                {% endif %}
+                            </div>
+                            {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'logout' %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit"
+                                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-red-600 text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-red-700">
+                                    <span class="truncate">Logout</span>
+                                </button>
+                            </form>
+                            {% else %}
+                            <a href="{% url 'register_client' %}"
+                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                <span class="truncate">Sign Up</span>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </header>
+
+                    <div class="px-4 py-5 @container">
+                        <div class="@[480px]:p-4">
+                            <div class="flex min-h-[700px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                                data-alt="Abstract gradient background"
+                                style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEgwR8MRQ4dBuuZZyUij7V0YOcyRGIdjcrP4OqJftjZkSwiVCxRT7ySdgdBgLijVK839QeSPl8AwsgsjcMzqadhofPXDCRI4oVPKxcTw0MWh3DC6CHUH4zzUUyMl5frJ5wk_ciXyPzgtC-m2NPq1DfrcWH2KBWNASNTZwfG6LGDGSnCdk5pOvAs0PUScDnlI71BJNKnr3qDXtA6NqUXA2Skz3QWQDze0o6P-vu-K9ogB1mOoER9ery4AXsdQSGFzSWlM88LG0lQFs");'>
+
+                                <div
+                                    class="w-full max-w-xl bg-background-light dark:bg-background-dark rounded-xl p-6 shadow-xl">
+                                    <div class="flex flex-col gap-2 text-center mb-6">
+                                        <h1
+                                            class="text-[#0d171b] dark:text-slate-50 text-2xl font-black leading-tight tracking-[-0.033em]">
+                                            Place Your Bid{% if project %} for {{ project.title }}{% endif %}
+                                        </h1>
+                                        <h2
+                                            class="text-[#6c757d] dark:text-slate-400 text-sm font-normal leading-normal">
+                                            Submit a competitive offer with a short proposal
+                                        </h2>
+                                    </div>
+
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div
+                                        class="mb-4 p-3 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+
+                                    {% if user.is_authenticated and user.role == 'freelancer' %}
+                                    <form method="post" class="space-y-5">
+                                        {% csrf_token %}
+
+                                        <!-- Bid Amount -->
+                                        <div>
+                                            <label for="{{ form.bid_amount.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Your Bid Amount ($) *
+                                            </label>
+                                            {{ form.bid_amount }}
+                                            {% if form.bid_amount.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.bid_amount.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- Message -->
+                                        <div>
+                                            <label for="{{ form.message.id_for_label }}"
+                                                class="block text-sm font-medium text-[#0d171b] dark:text-slate-50 mb-2">
+                                                Proposal Message *
+                                            </label>
+                                            {{ form.message }}
+                                            {% if form.message.errors %}
+                                            <div class="text-red-500 text-xs mt-1">{{ form.message.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        {% if form.non_field_errors %}
+                                        <div class="text-red-500 text-xs">{{ form.non_field_errors }}</div>
+                                        {% endif %}
+
+                                        <button type="submit"
+                                            class="w-full flex items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">
+                                            <span class="truncate">Place Bid</span>
+                                        </button>
+                                    </form>
+                                    {% else %}
+                                    <div class="text-center space-y-4">
+                                        {% if not user.is_authenticated %}
+                                        <p class="text-[#6c757d] dark:text-slate-400 text-sm">Please sign in as a
+                                            freelancer to place a bid.</p>
+                                        <div class="flex gap-3 justify-center">
+                                            <a href="{% url 'login' %}"
+                                                class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">Sign
+                                                In</a>
+                                            <a href="{% url 'register_freelancer' %}"
+                                                class="flex min-w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 dark:bg-primary/30 text-primary dark:text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/30 dark:hover:bg-primary/40">Register
+                                                as Freelancer</a>
+                                        </div>
+                                        {% else %}
+                                        <p class="text-[#6c757d] dark:text-slate-400 text-sm">Only freelancer
+                                            accounts can place bids.</p>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="mt-6 text-center">
+                                        <a href="{% url 'home' %}"
+                                            class="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium">
+                                            <span class="material-symbols-outlined text-base">arrow_back</span>
+                                            <span>Back to Home</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="border-t border-solid border-[#e7eff3] dark:border-slate-800 mt-10 px-10 py-6">
+                        <div class="flex justify-between items-center">
+                            <p class="text-[#6c757d] dark:text-slate-400 text-sm">© 2025 WorkHive. All rights
+                                reserved.</p>
+                            <div class="flex gap-6">
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">About Us</a>
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">Contact</a>
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">Terms of Service</a>
+                                <a class="text-[#6c757d] dark:text-slate-400 text-sm hover:text-primary dark:hover:text-slate-200"
+                                    href="#">Privacy Policy</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
